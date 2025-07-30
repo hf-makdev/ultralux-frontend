@@ -1,26 +1,213 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
+/* UltraLux Design System CSS Variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Apple-Inspired Color Palette */
+  --ultralux-charcoal: #1D1D1F;
+  --ultralux-charcoal-light: #424245;
+  --ultralux-charcoal-dark: #000000;
+  --ultralux-off-white: #FBFBFD;
+  --ultralux-gold: #FF9500;
+  --ultralux-gold-light: #FFCC02;
+  --ultralux-gold-dark: #FF6600;
+  --ultralux-gray: #86868B;
+  --ultralux-blue: #007AFF;
+  --ultralux-green: #34C759;
+
+  /* Apple-Inspired Typography */
+  --font-display: 'Futura', 'Avenir Next', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Avenir Next', 'Inter', system-ui, sans-serif;
+  --font-accent: 'Futura', 'Avenir Next', -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+
+  /* Spacing System */
+  --space-hero: 12rem;   /* 192px */
+  --space-section: 6rem; /* 96px */
+  --space-content: 3rem; /* 48px */
+
+  /* Apple-inspired values */
+  --border-radius-card: 1rem;
+  --border-radius-button: 0.75rem;
+  --border-radius-apple: 1.25rem;
+  --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-hero: 0 32px 64px rgba(0, 0, 0, 0.15);
+  --shadow-luxury: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-apple: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+  /* Apple-style Animation */
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+  --duration-slow: 400ms;
+  --duration-luxury: 600ms;
+  --easing-luxury: cubic-bezier(0.4, 0, 0.1, 1);
+  --easing-apple: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --easing-apple-spring: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* Apple-style Gradients */
+  --gradient-hero: linear-gradient(135deg, rgba(29,29,31,0.95) 0%, rgba(29,29,31,0.8) 100%);
+  --gradient-card-overlay: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.6) 100%);
+  --gradient-apple: linear-gradient(135deg, #FBFBFD 0%, #F5F5F7 100%);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Base Styles */
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ultralux-charcoal);
+  background-color: var(--ultralux-off-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Classes */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+/* Luxury Component Base Classes */
+.luxury-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .luxury-container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .luxury-container {
+    padding: 0 2rem;
+  }
+}
+
+/* Luxury Button Base */
+.luxury-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-family: var(--font-accent);
+  font-weight: 600;
+  border-radius: var(--border-radius-button);
+  transition: all var(--duration-base) var(--easing-luxury);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.luxury-button-primary {
+  background-color: var(--ultralux-gold);
+  color: white;
+}
+
+.luxury-button-primary:hover {
+  background-color: var(--ultralux-gold-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-luxury);
+}
+
+/* Property Card Animation */
+.property-card {
+  transition: all var(--duration-base) var(--easing-luxury);
+}
+
+.property-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-luxury);
+}
+
+/* Smooth Image Loading */
+.image-loading {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Luxury Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ultralux-off-white);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ultralux-gray);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ultralux-charcoal-light);
+}
+
+/* Focus States for Accessibility */
+*:focus {
+  outline: 2px solid var(--ultralux-gold);
+  outline-offset: 2px;
+}
+
+/* Luxury Text Selection */
+::selection {
+  background-color: var(--ultralux-gold);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--ultralux-gold);
+  color: white;
+}
+
+/* High-contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --ultralux-charcoal: #000000;
+    --ultralux-off-white: #ffffff;
+    --ultralux-gold: #B7791F;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
